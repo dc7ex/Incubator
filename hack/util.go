@@ -187,3 +187,7 @@ func GetSMS() string {
 func GetNumber() string {
 	return fmt.Sprintf("%8v", rand.New(rand.NewSource(time.Now().UnixNano())).Int31n(100000000))
 }
+
+func RandomID() string {
+    return fmt.Sprintf("%09v", rand.New(rand.NewSource(time.Now().UnixNano())).Int31n(1000000000))
+}
