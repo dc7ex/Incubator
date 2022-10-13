@@ -340,9 +340,10 @@ func TimestampToTime(ts int64) int64 {
 	return StringToInt64(timeStr)
 }
 
-func StringToTimestamp(format string, val string) int64 {
-	tm, _ := time.Parse(format, format)
-	return tm.Unix()
+func StringToTimestamp(val string) int64 {
+	loc, _ := time.LoadLocation("Asia/Shanghai")                   //设置时区
+	tt, _ := time.ParseInLocation("2006-01-02 15:04:05", val, loc) //2006-01-02 15:04:05是转换的格式如php的"Y-m-d H:i:s"
+	return tt.Unix()
 }
 
 func MapStringMerge(list ...map[string]string) (result map[string]string) {
@@ -376,12 +377,32 @@ func MapToJson(param map[string]interface{}) string {
 }
 
 func NewTimestamp() int64 {
-    l, _ := time.LoadLocation("Asia/Shanghai")
-    return time.Now().In(l).Unix()
+	l, _ := time.LoadLocation("Asia/Shanghai")
+	return time.Now().In(l).Unix()
 }
 
 func ListStringToJson(param []string) string {
-    dataType, _ := json.Marshal(param)
-    dataString := string(dataType)
-    return dataString
+	dataType, _ := json.Marshal(param)
+	dataString := string(dataType)
+	return dataString
+}
+
+func NewDateOffset(years, months, days int) int {
+	cstSh, _ := time.LoadLocation("Asia/Shanghai")
+	timeStr := time.Now().AddDate(years, months, days).In(cstSh).Format("20060102")
+	timeSeries, err := strconv.Atoi(timeStr)
+	if err != nil {
+		return 0
+	}
+	return timeSeries
+}
+
+func YearsToString() string {
+	cstSh, _ := time.LoadLocation("Asia/Shanghai")
+	return time.Now().In(cstSh).Format("2006")
+}
+
+func DateToString() string {
+	cstSh, _ := time.LoadLocation("Asia/Shanghai")
+	return time.Now().In(cstSh).Format("20060102")
 }
