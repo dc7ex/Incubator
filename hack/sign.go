@@ -11,6 +11,20 @@ func Sign(data map[string]interface{}, key string) (sign string) {
 		return ""
 	}
 
+	var d = make(map[string]string)
+	for k, v := range data {
+		d[k] = ToString(v)
+	}
+
+	return SignString(d, key)
+}
+
+func SignString(data map[string]string, key string) (sign string) {
+
+	if len(data) == 0 {
+		return ""
+	}
+
 	var strs []string
 	for k, _ := range data {
 		strs = append(strs, k)
@@ -23,8 +37,7 @@ func Sign(data map[string]interface{}, key string) (sign string) {
 		if k == "sign" || k == "signature" {
 			continue
 		}
-		val := ToString(data[k])
-		str += k + "=" + val + "&"
+		str += k + "=" + data[k] + "&"
 	}
 
 	str += "key=" + key
