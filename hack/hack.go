@@ -406,3 +406,8 @@ func DateToString() string {
 	cstSh, _ := time.LoadLocation("Asia/Shanghai")
 	return time.Now().In(cstSh).Format("20060102")
 }
+
+func ToDayStartTime(t time.Time) time.Time {
+    l, _ := time.LoadLocation("Asia/Shanghai")
+    return time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, l)
+}
