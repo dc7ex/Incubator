@@ -21,6 +21,8 @@ func NewWebServer(host string, port int) (*WebServer, error) {
 	webServer.port = port
 
 	e := echo.New()
+	// 自定义错误
+	e.HTTPErrorHandler = customHTTPErrorHandler
 	// 验证
 	e.Validator = &CustomValidator{
 		validator: vv9.New(),
@@ -70,3 +72,5 @@ func (w *WebServer) RegisterMiddleware() {
 }
 
 func (w *WebServer) RegisterRouting() {}
+
+func customHTTPErrorHandler(e error, ctx echo.Context) {}

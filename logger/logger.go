@@ -33,7 +33,7 @@ func ConfigLocalFilesystemLogger(logPath string, state bool) {
 
 	logWriteMap := lfshook.WriterMap{}
 	logFormatter := &logrus.JSONFormatter{}
-	maxAge := 7 * 24 * time.Hour
+	maxAge := 15 * 24 * time.Hour
 	rotationTime := 24 * time.Hour
 
 	for key, level := range logMap {
