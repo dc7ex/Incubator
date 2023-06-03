@@ -1,4 +1,4 @@
-module git.vanlai.net/7ex/incubator
+module github.com/dc7ex/incubator
 
 go 1.18
 
