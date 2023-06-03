@@ -1,4 +1,4 @@
-module github.com/dc7ex/incubator
+module github.com/dc7ex/Incubator
 
 go 1.18
 
