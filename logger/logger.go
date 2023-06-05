@@ -33,7 +33,7 @@ func ConfigLocalFilesystemLogger(logPath string, state bool) {
 
 	logWriteMap := lfshook.WriterMap{}
 	logFormatter := &logrus.JSONFormatter{}
-	maxAge := 15 * 24 * time.Hour
+	maxAge := 2 * 24 * time.Hour
 	rotationTime := 24 * time.Hour
 
 	for key, level := range logMap {
@@ -58,7 +58,7 @@ func ConfigLocalFilesystemLogger(logPath string, state bool) {
 	// end
 }
 
-//判断文件文件夹是否存在
+// 判断文件文件夹是否存在
 func isFileExist(path string) (bool, error) {
 	fileInfo, err := os.Stat(path)
 

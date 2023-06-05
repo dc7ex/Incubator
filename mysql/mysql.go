@@ -39,7 +39,7 @@ func NewMysql(connection string, host string, port string, database string, user
 		LogPath:       logPath,          //日志路径
 		TimeTagFormat: "20060102150405", //时间格式串
 		FileName:      "mysql_exec",     //日志文件名
-		MaxRemain:     7,                //配置日志最大存留数
+		MaxRemain:     2,                //配置日志最大存留数
 		// 目前有2中滚动策略: 按照时间滚动按照大小滚动
 		// - 时间滚动: 配置策略如同 crontable, 例如,每天0:0切分, 则配置 0 0 0 * * *
 		// - 大小滚动: 配置单个日志文件(未压缩)的滚动大小门限, 如1G, 500M
